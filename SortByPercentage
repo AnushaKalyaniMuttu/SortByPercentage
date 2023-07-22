@@ -1,0 +1,27 @@
+package com.demo;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+public class StringReversalUsingReduce {
+
+	public static void main(String[] args) {
+		List<Person> names=new ArrayList<>();
+		names.add(new Person(1,"anusha",1000d));
+		names.add(new Person(2,"kalyani",2000d));
+		names.add(new Person(3,"garvi",3000d));
+		names.add(new Person(4,"struti",4000d));
+		
+		names.stream().sorted((s1,s2)->s2.getPercentage()>s1.getPercentage()?1:-1).forEach(System.out::println);
+		names.stream().sorted(Comparator.comparing(Person::getPercentage).reversed()).forEach(System.out::println);
+		names.stream().sorted(new Comparator<Person>() {
+			
+			@Override
+			public int compare( Person s1,Person  s2) {
+				return s2.getPercentage()>s1.getPercentage()?1:-1;
+			}
+		}).forEach(System.out::println);
+	}
+
+}
